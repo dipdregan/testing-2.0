@@ -45,20 +45,20 @@ class PredictionPipeline:
 
         return predictions
 
-if __name__ == "__main__":
-    # Example usage
-    s3_model_path = "model/model_20231224122240/model.pkl"  # Update with the actual S3 model path
-    prediction_pipeline = PredictionPipeline(s3_model_path)
+# if __name__ == "__main__":
+#     # Example usage
+#     s3_model_path = "model/model_20231224122240/model.pkl"  # Update with the actual S3 model path
+#     prediction_pipeline = PredictionPipeline(s3_model_path)
 
-    # Input data for prediction
-    input_data = [[7.8, 0.64, 0.1, 6.0, 0.115, 5.0, 11.0, 0.9984, 3.37, 0.69, 10.1]]
+#     # Input data for prediction
+#     input_data = [[7.8, 0.64, 0.1, 6.0, 0.115, 5.0, 11.0, 0.9984, 3.37, 0.69, 10.1]]
 
-    # Perform prediction
-    predictions = prediction_pipeline.predict(input_data)
+#     # Perform prediction
+#     predictions = prediction_pipeline.predict(input_data)
 
-    # Display predictions
-    print("Predictions:")
-    print(predictions)
+#     # Display predictions
+#     print("Predictions:")
+#     print(predictions)
 
 
 # import mlflow

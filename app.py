@@ -24,8 +24,8 @@ def homePage():
 @app.route('/train', methods=['GET'])  # route to train the pipeline
 def training():
     os.system("python main.py")
-    os.system("dvc repro.py")
-    return "Training Successful!"
+    # os.system("dvc repro.py")
+    return render_template('train.html', message="🚀 Model Training Completed Successfully!")
 
 @app.route('/predict', methods=['POST', 'GET'])  # route to show the predictions in a web UI
 def index():
