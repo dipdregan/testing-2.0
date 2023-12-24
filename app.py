@@ -4,11 +4,16 @@ import numpy as np
 import pandas as pd
 
 from mlProject.pipeline.prediction import PredictionPipeline
+from mlProject.utils.common import read_yaml
+from mlProject.constants import CONFIG_FILE_PATH
+
+config = read_yaml(CONFIG_FILE_PATH)
+
 
 app = Flask(__name__)  
 
 # Replace this with the correct S3 URI for your model
-s3_model_path = "model/model_20231219171230/model.pkl"
+s3_model_path = config.predition.s3_model_path 
 # Initialize PredictionPipeline with the model S3 URI
 prediction_pipeline = PredictionPipeline(s3_model_path=s3_model_path)
 
