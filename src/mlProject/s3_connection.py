@@ -3,8 +3,12 @@ import os
 from dotenv import load_dotenv
 from botocore.exceptions import NoCredentialsError
 from mlProject import logger  # Replace with the correct import for your logger
+from mlProject.utils.common import read_yaml
+from mlProject.constants import CONFIG_FILE_PATH
 
-load_dotenv()
+config = read_yaml(CONFIG_FILE_PATH)
+bucket = config.model_evaluation.bucket_name
+
 
 def create_s3_client():
     try:
@@ -27,7 +31,7 @@ def upload_to_s3(local_path, s3_path):
             logger.error("S3 client not available.")
             return
         # Upload the file
-        s3.upload_file(local_path,"balti901", s3_path)
+        s3.upload_file(local_path,bucket, s3_path)
         logger.info(f"File uploaded to S3 at {s3_path}")
     except FileNotFoundError:
         logger.error(f"The file {local_path} was not found.")
@@ -41,21 +45,21 @@ def download_from_s3(s3_path, local_path):
             logger.error("S3 client not available.")
             return
         # Download the file
-        s3.download_file("balti901", s3_path, local_path)
+        s3.download_file(bucket, s3_path, local_path)
         logger.info(f"File downloaded from S3 to {local_path}")
     except NoCredentialsError:
         logger.error("Credentials not available.")
     except Exception as e:
         logger.error(f"Error downloading file from S3: {str(e)}")
 
-if __name__ == "__main__":
-    # Specify local and S3 paths
-    local_path = r"F:\End_To_End_project\MlFLOW_S3\mlflow2.0\mlflow_testing_with_aws\artifacts\model_trainer\model.pkl"
-    s3_path = "testing/model.pkl"
+# if __name__ == "__main__":
+#     # Specify local and S3 paths
+#     local_path = r"F:\End_To_End_project\MlFLOW_S3\mlflow2.0\mlflow_testing_with_aws\artifacts\model_trainer\model.pkl"
+#     s3_path = "testing/model.pkl"
 
-    # Upload file to S3
-    upload_to_s3(local_path, s3_path)
+#     # Upload file to S3
+#     upload_to_s3(local_path, s3_path)
 
-    # Download file from S3
-    download_from_s3(s3_path, r'../artifacts')
+#     # Download file from S3
+#     download_from_s3(s3_path, r'../artifacts')
 

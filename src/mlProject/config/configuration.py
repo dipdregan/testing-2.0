@@ -111,6 +111,7 @@ class ConfigurationManager:
             metric_file_name = config.metric_file_name,
             target_column = schema.name,
             mlflow_uri="https://dagshub.com/dipdregan/testing-2.0.mlflow",
+            Bucket_name= config.bucket_name
            
         )
 
