@@ -110,7 +110,7 @@ class ConfigurationManager:
             all_params=params,
             metric_file_name = config.metric_file_name,
             target_column = schema.name,
-            mlflow_uri="https://dagshub.com/dipdregan/mlflow_testing_with_aws.mlflow",
+            mlflow_uri="https://dagshub.com/dipdregan/testing-2.0.mlflow",
            
         )
 

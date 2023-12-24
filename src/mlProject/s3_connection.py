@@ -27,7 +27,7 @@ def upload_to_s3(local_path, s3_path):
             logger.error("S3 client not available.")
             return
         # Upload the file
-        s3.upload_file(local_path, os.getenv("S3_BUCKET_NAME"), s3_path)
+        s3.upload_file(local_path,"balti901", s3_path)
         logger.info(f"File uploaded to S3 at {s3_path}")
     except FileNotFoundError:
         logger.error(f"The file {local_path} was not found.")
@@ -41,7 +41,7 @@ def download_from_s3(s3_path, local_path):
             logger.error("S3 client not available.")
             return
         # Download the file
-        s3.download_file(os.getenv("S3_BUCKET_NAME"), s3_path, local_path)
+        s3.download_file("balti901", s3_path, local_path)
         logger.info(f"File downloaded from S3 to {local_path}")
     except NoCredentialsError:
         logger.error("Credentials not available.")
